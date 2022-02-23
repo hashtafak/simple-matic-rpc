@@ -1,16 +1,14 @@
+const fs = require('fs')
 const express = require('express');
 const request = require('request');
 const WRRPool = require('wrr-pool');
 const pool = new WRRPool();
 
-const servers = [
-    'https://rpc-mainnet.matic.network',
-    'https://matic-mainnet.chainstacklabs.com',
-    'https://rpc-mainnet.maticvigil.com',
-    'https://rpc-mainnet.matic.quiknode.pro',
-    'https://matic-mainnet-full-rpc.bwarelabs.com',
-    'https://matic-mainnet-archive-rpc.bwarelabs.com',
-];
+const servers = fs.readFileSync('./servers.txt', {
+    encoding: 'utf-8'
+}).split(/\s/).filter(line => line.replace(/\s/g, '') !== "").map(line => line.replace(/\s/g, ''))
+
+console.log(servers)
 
 servers.forEach(server => {
     pool.add(server, 1)
