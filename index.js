@@ -18,9 +18,9 @@ servers.forEach(server => {
 });
 
 // update value to '' and weight to 4 for most use
-pool.update(function (v) {
-    return v === 'https://rpc-mainnet.maticvigil.com/v1/';
-}, 'https://rpc-mainnet.maticvigil.com/v1/', 4); // => returns index of updated element or undefined if not found
+// pool.update(function (v) {
+//     return v === 'https://rpc-mainnet.maticvigil.com/v1/';
+// }, 'https://rpc-mainnet.maticvigil.com/v1/', 4); // => returns index of updated element or undefined if not found
 
 // __________________________________________________________
 let url = pool.next();
